@@ -11,7 +11,12 @@ def home(request):
         task = request.POST.get("task")
         new_todo = todo(user=request.user, todo_name=task)
         new_todo.save()
-    return render(request, "todoapp/todo.html", {})
+        
+    all_todos_for_user = todo.objects.filter(user=request.user)
+    context = {
+        'todos': all_todos_for_user
+    }
+    return render(request, "todoapp/todo.html", context)
 
 
 def register(request):

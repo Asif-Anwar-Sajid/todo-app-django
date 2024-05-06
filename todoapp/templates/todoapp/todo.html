@@ -49,8 +49,12 @@
                     {% endif %}
 
                     <td>
-                      <a href="{% url 'delete' i.todo_name %}"><button type="submit" class="btn btn-danger">Delete</button></a>
-                      <a href="{% url 'update' i.todo_name %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a>
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                      <button type="submit" class="btn btn-success ms-1">Finished</button>
+                      <!-- <a href="{% url 'del
+                        ete' i.todo_name %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                      <a href="{% url 'upd
+                      ate' i.todo_name %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a> -->
                     </td>
                   </tr>
                   {% endfor %}
