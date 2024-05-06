@@ -11,11 +11,9 @@ def home(request):
         task = request.POST.get("task")
         new_todo = todo(user=request.user, todo_name=task)
         new_todo.save()
-        
+
     all_todos_for_user = todo.objects.filter(user=request.user)
-    context = {
-        'todos': all_todos_for_user
-    }
+    context = {"todos": all_todos_for_user}
     return render(request, "todoapp/todo.html", context)
 
 
@@ -63,4 +61,17 @@ def loginpage(request):
             messages.error(request, "Error, wrong user details or user does not exist.")
             return redirect("login")
 
-    return render(request, "todoapp/login.html")
+    return render(request, "todoapp/login.html", {})
+
+
+def DeleteTask(request, name):
+    get_todo = todo.objects.get(user=request.user, todo_name=name)
+    get_todo.delete()
+    return redirect("home-page")
+
+
+def Update(request, name):
+    get_todo = todo.objects.get(user=request.user, todo_name=name)
+    get_todo.status = True
+    get_todo.save()
+    return redirect("home-page")
